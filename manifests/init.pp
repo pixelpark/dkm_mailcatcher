@@ -5,13 +5,21 @@
 # @example
 #   include dkm_mailcatcher
 class dkm_mailcatcher (
-    String $ensure_state,
-    String $http_addr,
-    #String $smtp_addr,
-    String $package_provider,
-    String $terminal_provider,
-    String $command,
+  String[1] $ruby_version,
+  String $ensure_state,
+  String $http_addr,
+  # String $smtp_addr,
+  String $package_provider,
+  String $terminal_provider,
+  String $command,
 ) {
-    include dkm_mailcatcher::install
-    include dkm_mailcatcher::run
+
+  class {'corp104_rvm':
+    ruby_version => $ruby_version,
+  }
+
+  include dkm_mailcatcher::install
+  include dkm_mailcatcher::run
+
+  Class['Corp104_rvm'] -> Class['dkm_mailcatcher::install'] -> Class['dkm_mailcatcher::run']
 }

@@ -1,5 +1,6 @@
 --- 
 
+dkm_mailcatcher::ruby_version: '2.7'
 dkm_mailcatcher::ensure_state: 'installed'
 dkm_mailcatcher::http_addr: "%{ facts.ipaddress }"
 #dkm_mailcatcher::smtp_addr: "%{ facts.ipaddress }"
