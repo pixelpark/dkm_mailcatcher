@@ -1,0 +1,10 @@
+--- 
+
+dkm_mailcatcher::ensure_state: 'installed'
+dkm_mailcatcher::http_addr: "%{ facts.ipaddress }"
+#dkm_mailcatcher::smtp_addr: "%{ facts.ipaddress }"
+dkm_mailcatcher::package: 'mailcatcher'
+dkm_mailcatcher::package_provider: 'gem'
+dkm_mailcatcher::command: "mailcatcher --ip %{lookup('dkm_mailcatcher::http_addr')}"
+dkm_mailcatcher::terminal_provider: shell
+dkm_mailcatcher::rvm_user: 'dkm'
