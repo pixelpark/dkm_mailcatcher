@@ -5,13 +5,14 @@
 # @example
 #   include dkm_mailcatcher
 class dkm_mailcatcher (
-  String[1] $ruby_version,
-  String $ensure_state,
-  String $http_addr,
-  # String $smtp_addr,
-  String $package_provider,
-  String $terminal_provider,
-  String $command,
+  String[1]            $ruby_version,
+  Stdlib::Absolutepath $gem_path,
+  String               $ensure_state,
+  String               $http_addr,
+  # String               $smtp_addr,
+  String               $package_provider,
+  String               $terminal_provider,
+  String               $command,
 ) {
 
   class {'corp104_rvm':

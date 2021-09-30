@@ -5,8 +5,10 @@
 # @example
 #   include dkm_mailcatcher::install
 class dkm_mailcatcher::install {
-    package { 'mailcatcher':
-      ensure   => $dkm_mailcatcher::ensure,
-      provider => $dkm_mailcatcher::package_provider,
-    }
+
+  package { 'mailcatcher':
+    ensure   => $dkm_mailcatcher::ensure,
+    command  => $dkm_mailcatcher::gem_path,
+    provider => $dkm_mailcatcher::package_provider,
+  }
 }

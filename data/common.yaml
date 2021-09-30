@@ -9,3 +9,4 @@ dkm_mailcatcher::package_provider: 'gem'
 dkm_mailcatcher::command: "mailcatcher --ip %{lookup('dkm_mailcatcher::http_addr')}"
 dkm_mailcatcher::terminal_provider: shell
 dkm_mailcatcher::rvm_user: 'dkm'
+dkm_mailcatcher::gem_path: '/usr/local/rvm/rubies/default/bin/gem'
