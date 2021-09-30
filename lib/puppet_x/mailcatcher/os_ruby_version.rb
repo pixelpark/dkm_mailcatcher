@@ -7,7 +7,7 @@ module Puppet::Mailcatcher
   def self.ruby_version()
     ruby_bin = Puppet::Infra.which('ruby')
 
-    if ruby_bin.empty?
+    if ruby_bin.nil?
       return nil
     end
 
