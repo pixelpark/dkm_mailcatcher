@@ -8,3 +8,16 @@ dkm_mailcatcher::package_provider: 'gem'
 dkm_mailcatcher::command: "mailcatcher --ip %{lookup('dkm_mailcatcher::http_addr')}"
 dkm_mailcatcher::terminal_provider: shell
 dkm_mailcatcher::rvm_user: 'dkm'
+dkm_mailcatcher::ruby_version: 'ruby:2.7'
+dkm_mailcatcher::module_mngmt: dnfmodule
+dkm_mailcatcher::packages:
+    - ruby-devel
+    - sqlite-devel
+dkm_mailcatcher::target_path: '/etc/systemd/system/mailcatcher.service'
+dkm_mailcatcher::service_desc: 'MailCatcher Service'
+dkm_mailcatcher::service_doc: 'http://mailcatcher.me/'
+dkm_mailcatcher::service_start: 'network.service'
+dkm_mailcatcher::service_type: 'simple'
+dkm_mailcatcher::service_cmd: '/usr/local/bin/mailcatcher --foreground --ip 0.0.0.0'
+dkm_mailcatcher::service_restart: 'always'
+dkm_mailcatcher::service_wanted: 'multi-user.target'
