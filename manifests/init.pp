@@ -5,6 +5,14 @@
 # @example
 #   include dkm_mailcatcher
 class dkm_mailcatcher (
+  String           $target_path,
+  String           $service_desc,
+  String           $service_doc,
+  String           $service_start,
+  String           $service_type,
+  String           $service_cmd,
+  String           $service_restart,
+  String           $service_wanted,
   Array[String]    $packages,
   String           $ruby_version,
   String           $module_mngmt,

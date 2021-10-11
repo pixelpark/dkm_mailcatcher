@@ -1,0 +1,21 @@
+<% | String $description,
+     String $documentation,
+     String $after,
+     String $type,
+     String $execstart,
+     String $restart,
+     String $wantedby,
+| -%>
+
+[Unit]
+Description=<%= $description %>
+Documentation=<%= $documentation %>
+After=<%= $after %>
+
+[Service]
+Type=<%= $type %>
+ExecStart=<%= $execstart %>
+Restart=<%= $restart %>
+
+[Install]
+WantedBy=<%= $wantedby %>
