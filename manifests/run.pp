@@ -6,6 +6,7 @@
 #   include dkm_mailcatcher::run
 class dkm_mailcatcher::run {
   exec { 'mailcacther':
+    path     => facts['path'],
     command  => $dkm_mailcatcher::command,
     provider => $dkm_mailcatcher::terminal_provider,
     unless   => 'ss -tlpn | grep 1080',
