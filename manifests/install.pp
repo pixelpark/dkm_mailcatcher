@@ -3,10 +3,12 @@
 # A description of what this class does
 #
 # @example
-#   include dkm_mailcatcher::install
-class dkm_mailcatcher::install {
+#   include mailcatcher::install
+class mailcatcher::install {
   package { 'mailcatcher':
-    ensure   => $dkm_mailcatcher::ensure,
-    provider => $dkm_mailcatcher::package_provider,
+    ensure   => $mailcatcher::ensure,
+    provider => $mailcatcher::package_provider,
+    command  => '/usr/bin/gem',
+    require  => Class['mailcatcher::setruby'],
   }
 }

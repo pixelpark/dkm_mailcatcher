@@ -1,0 +1,136 @@
+# DO NOT make any changes to this file. Any change will be
+# deleted by Puppet. Please contact your System Administrator
+# at colao84@gmail.com if you wish some changes.
+#
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+# If you want to change the port on a SELinux system, you have to tell
+# SELinux about this change.
+# semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
+#
+
+
+Protocol <%= @protocol %>
+
+Port <%= @port %>
+AddressFamily <%= @address_family %>
+ListenAddress <%= @listen_address_v4 %>
+#ListenAddress <%= @listen_address_v6 %>
+
+HostKey <%= @host_key %>
+HostKey <%= @host_key_1 %>
+
+# Ciphers and keying
+#RekeyLimit <%= @rkey_limit %>
+
+# Logging
+SyslogFacility <%= @syslog_facility %>
+LogLevel <%= @log_level %>
+
+# Authentication:
+
+LoginGraceTime <%= @login_grace_time %>
+PermitRootLogin <%= @permit_root_login %>
+StrictModes <%= @strict_modes %>
+MaxAuthTries <%= @max_auth_tries %>
+MaxSessions <%= @max_sessions %>
+
+PubkeyAuthentication <%= @pubkey_authentication %>
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile      <%= @authorized_keys_file %>
+
+#AuthorizedPrincipalsFile <%= @authorized_principals_file %>
+
+#AuthorizedKeysCommand <%= @authorized_keys_command %>
+#AuthorizedKeysCommandUser <%= @authorized_keys_command_user %>
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication <%= @hostbased_authentication %>
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts <%= @ignore_user_known_hosts %>
+# Don't read the user's ~/.rhosts and ~/.shosts files
+IgnoreRhosts <%= @ignore_rhosts %>
+
+# To disable tunneled clear text passwords, change to no here!
+PermitEmptyPasswords <%= @permit_empty_passwords %>
+PasswordAuthentication <%= @password_authentication %>
+
+# Change to no to disable s/key passwords
+ChallengeResponseAuthentication <%= @challenge_response_authentication %>
+
+# Kerberos options
+#KerberosAuthentication <%= @kerberos_authentication %>
+#KerberosOrLocalPasswd <%= @kerberos_or_local_passwd %>
+#KerberosTicketCleanup <%= @kerberos_ticket_cleanup %>
+#KerberosGetAFSToken <%= @kerberos_get_afs_token %>
+#KerberosUseKuserok <%= @kerberos_sse_kuserok %>
+
+# GSSAPI options
+GSSAPIAuthentication <%= @gssapi_authentication %>
+GSSAPICleanupCredentials <%= @gssapi_cleanup_credentials %>
+#GSSAPIStrictAcceptorCheck <%= @gssapi_strict_acceptor_check %>
+#GSSAPIKeyExchange <%= @gssapi_key_exchange %>
+#GSSAPIEnablek5users <%= @gssapi_enablek5users %>
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the ChallengeResponseAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via ChallengeResponseAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+# WARNING: 'UsePAM no' is not supported in Red Hat Enterprise Linux and may cause several
+# problems.
+UsePAM <%= @use_pam %>
+
+#AllowAgentForwarding <%= @allow_agent_forwarding %>
+AllowTcpForwarding <%= @allow_tcp_forwarding %>
+#GatewayPorts <%= @gateway_ports %>
+X11Forwarding <%= @x11_forwarding %>
+#X11DisplayOffset <%= @x11_display_offset %>
+#X11UseLocalhost <%= @x11_use_localhost %>
+#PermitTTY <%= @permit_tty %>
+#PrintMotd <%= @print_motd %>
+#PrintLastLog <%= @print_last_log %>
+#TCPKeepAlive <%= @tcp_keep_alive %>
+#PermitUserEnvironment <%= @permit_user_environment %>
+#Compression <%= @compression %>
+ClientAliveInterval <%= @client_alive_interval %>
+ClientAliveCountMax <%= @client_alive_count_max %>
+UseDNS <%= @use_dns %>
+#PidFile <%= @pid_file %>
+#MaxStartups <%= @max_startups %>
+PermitTunnel <%= @permit_tunnel %>
+#ChrootDirectory <%= @chroot_directory %>
+#VersionAddendum <%= @version_addendum %>
+
+# no default banner path
+#Banner <%= @banner %>
+
+# Accept locale-related environment variables
+AcceptEnv <%= @accept_env_1 %>
+AcceptEnv <%= @accept_env_2 %>
+AcceptEnv <%= @accept_env_3 %>
+AcceptEnv <%= @accept_env_4 %>
+
+# override default of no subsystems
+Subsystem       <%= @subsystem %>
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#       X11Forwarding no
+#       AllowTcpForwarding no
+#       PermitTTY no
+#       ForceCommand cvs server

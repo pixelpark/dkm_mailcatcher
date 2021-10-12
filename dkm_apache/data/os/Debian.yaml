@@ -1,0 +1,4 @@
+---
+
+dkm_apache::package: apache2
+dkm_apache::service: apache2

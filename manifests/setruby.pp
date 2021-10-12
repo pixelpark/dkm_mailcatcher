@@ -3,16 +3,14 @@
 # A description of what this class does
 #
 # @example
-#   include dkm_mailcatcher::setruby
-class dkm_mailcatcher::setruby {
+#   include mailcatcher::setruby
+class mailcatcher::setruby {
   package { 'enable ruby module':
     ensure   => present,
-    name     => $dkm_mailcatcher::ruby_version,
-    provider => $dkm_mailcatcher::module_mngmt,
-    command  => '/usr/bin/dnf'
+    name     => $mailcatcher::ruby_version,
+    provider => $mailcatcher::module_mngmt,
   }
-  
-  package { $dkm_mailcatcher::packages:
+  package { $mailcatcher::packages:
     ensure => present,
   }
   

@@ -1,0 +1,5 @@
+---
+
+ssh::service_state: 'running'
+ssh::service_status: true
+ssh::packages_state: 'installed'
