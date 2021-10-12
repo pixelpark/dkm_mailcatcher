@@ -1,6 +1,6 @@
 {
-  "name": "dkm-dkm_mailcatcher",
-  "version": "0.1.0",
+  "name": "dkm-mailcatcher",
+  "version": "0.3.0",
   "author": "dkm",
   "summary": "",
   "license": "Apache-2.0",
@@ -12,13 +12,7 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
-      "operatingsystem": "OracleLinux",
-      "operatingsystemrelease": [
-        "7"
+        "8"
       ]
     },
     {
@@ -28,24 +22,11 @@
       ]
     },
     {
-      "operatingsystem": "Scientific",
-      "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
       "operatingsystem": "Fedora",
       "operatingsystemrelease": [
-        "29"
+        "30", "31", "32", "33", "34"
       ]
     },
-    {
-      "operatingsystem": "SLES",
-      "operatingsystemrelease": [
-        "15"
-      ]
-    }
-  ],
   "requirements": [
     {
       "name": "puppet",
