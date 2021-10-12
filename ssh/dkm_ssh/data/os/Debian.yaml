@@ -1,6 +1,0 @@
----
-
-ssh::packages:
-  - openssh-server
-  - openssh-client
-ssh::service_name: 'ssh'

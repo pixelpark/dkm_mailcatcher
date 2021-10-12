@@ -1,4 +1,0 @@
----
-
-dkm_apache::state: installed
-dkm_apache::status: running

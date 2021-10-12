@@ -1,4 +1,0 @@
----
-
-dkm_apache::package: httpd
-dkm_apache::service: httpd
