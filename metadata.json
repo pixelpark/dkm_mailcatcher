@@ -26,7 +26,8 @@
       "operatingsystemrelease": [
         "30", "31", "32", "33", "34"
       ]
-    },
+    }
+  ],
   "requirements": [
     {
       "name": "puppet",
@@ -37,3 +38,4 @@
   "template-url": "pdk-default#2.2.0",
   "template-ref": "tags/2.2.0-0-g2381db6"
 }
+

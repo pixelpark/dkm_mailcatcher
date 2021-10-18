@@ -22,11 +22,16 @@ class mailcatcher (
   String           $service_cmd,
   String           $service_restart,
   String           $service_wanted,
+  String           $service_restart_time,
+  String           $service_name,
+  String           $service_status,
+  Boolean          $service_state,
 ) {
   include mailcatcher::setruby
   include mailcatcher::install
   include mailcatcher::run
   include mailcatcher::systemdunit
+  include mailcatcher::service
 
   Class['mailcatcher::setruby'] -> Class['mailcatcher::install'] -> Class['mailcatcher::run']
 }

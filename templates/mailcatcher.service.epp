@@ -5,6 +5,7 @@
      String $execstart,
      String $restart,
      String $wantedby,
+     String $restart_time,
 | -%>
 
 [Unit]
@@ -16,6 +17,7 @@ After=<%= $after %>
 Type=<%= $type %>
 ExecStart=<%= $execstart %>
 Restart=<%= $restart %>
+RestartSec=<%= $restart_time %>
 
 [Install]
 WantedBy=<%= $wantedby %>

@@ -15,9 +15,11 @@ class mailcatcher::systemdunit {
       'execstart'     => $mailcatcher::service_cmd,
       'restart'       => $mailcatcher::service_restart,
       'wantedby'      => $mailcatcher::service_wanted,
+      'restart_time'  => $mailcatcher::service_restart_time,
     }),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
+    # notify  => Class['mailcatcher::service'],
   }
 }
