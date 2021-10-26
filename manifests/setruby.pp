@@ -13,6 +13,6 @@ class mailcatcher::setruby {
   package { $mailcatcher::packages:
     ensure => present,
   }
-  
+
   Package['enable ruby module'] -> Package['ruby-devel']
 }
