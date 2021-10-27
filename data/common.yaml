@@ -12,6 +12,9 @@ mailcatcher::module_mngmt: dnfmodule
 mailcatcher::packages:
     - ruby-devel
     - sqlite-devel
+    - make
+    - gcc
+    - gcc-c++
 mailcatcher::target_path: '/etc/systemd/system/mailcatcher.service'
 mailcatcher::service_desc: 'MailCatcher Service'
 mailcatcher::service_doc: 'http://mailcatcher.me/'
