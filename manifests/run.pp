@@ -3,11 +3,14 @@
 # A description of what this class does
 #
 # @example
-#   include dkm_mailcatcher::run
-class dkm_mailcatcher::run {
-    exec { 'mailcacther':
-      command  => $dkm_mailcatcher::command,
-      provider => $dkm_mailcatcher::terminal_provider,
-      unless   => 'ss -tlpn | grep 1080',
-    }
+#   include mailcatcher::run
+class mailcatcher::run {
+  $old_path  = $facts['path']
+  $new_path  = "${old_path}:/usr/local/bin"
+  exec { 'mailcatcher':
+    path     => $new_path,
+    command  => $mailcatcher::command,
+    provider => $mailcatcher::terminal_provider,
+    unless   => 'ss -tlpn | grep 1080',
+  }
 }

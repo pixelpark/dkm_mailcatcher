@@ -3,24 +3,35 @@
 # A description of what this class does
 #
 # @example
-#   include dkm_mailcatcher
-class dkm_mailcatcher (
-  String[1]            $ruby_version,
-  Stdlib::Absolutepath $gem_path,
-  String               $ensure_state,
-  String               $http_addr,
-  # String               $smtp_addr,
-  String               $package_provider,
-  String               $terminal_provider,
-  String               $command,
+#   include mailcatcher
+class mailcatcher (
+  Array[String]    $packages,
+  String           $ruby_version,
+  String           $module_mngmt,
+  String           $ensure_state,
+  String           $http_addr,
+  # String         $smtp_addr,
+  String           $package_provider,
+  String           $terminal_provider,
+  String           $command,
+  String           $target_path,
+  String           $service_desc,
+  String           $service_doc,
+  String           $service_start,
+  String           $service_type,
+  String           $service_cmd,
+  String           $service_restart,
+  String           $service_wanted,
+  String           $service_restart_time,
+  String           $service_name,
+  String           $service_status,
+  Boolean          $service_state,
 ) {
+  include mailcatcher::setruby
+  include mailcatcher::install
+  include mailcatcher::run
+  include mailcatcher::systemdunit
+  include mailcatcher::service
 
-  class {'corp104_rvm':
-    ruby_version => $ruby_version,
-  }
-
-  include dkm_mailcatcher::install
-  include dkm_mailcatcher::run
-
-  Class['Corp104_rvm'] -> Class['dkm_mailcatcher::install'] -> Class['dkm_mailcatcher::run']
+  Class['mailcatcher::setruby'] -> Class['mailcatcher::install'] -> Class['mailcatcher::run']
 }
