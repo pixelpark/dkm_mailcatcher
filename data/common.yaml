@@ -5,7 +5,7 @@ mailcatcher::http_addr: "%{ facts.ipaddress }"
 mailcatcher::smtp_addr: "%{ facts.ipaddress }"
 mailcatcher::package: 'mailcatcher'
 mailcatcher::package_provider: 'gem'
-mailcatcher::command: 'mailcatcher' 
+mailcatcher::command: 'mailcatcher --ip 0.0.0.0' 
 mailcatcher::terminal_provider: shell
 mailcatcher::ruby_version: 'ruby:2.7'
 mailcatcher::module_mngmt: dnfmodule
