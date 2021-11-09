@@ -5,7 +5,7 @@ mailcatcher::http_addr: "%{ facts.ipaddress }"
 mailcatcher::smtp_addr: "%{ facts.ipaddress }"
 mailcatcher::package: 'mailcatcher'
 mailcatcher::package_provider: 'gem'
-mailcatcher::command: 'mailcatcher --ip 0.0.0.0' 
+mailcatcher::command: "mailcatcher --foreground --http-ip %{lookup('mailcatcher::http_addr')}" 
 mailcatcher::terminal_provider: shell
 mailcatcher::ruby_version: 'ruby:2.7'
 mailcatcher::module_mngmt: dnfmodule
@@ -20,7 +20,7 @@ mailcatcher::service_desc: 'MailCatcher Service'
 mailcatcher::service_doc: 'http://mailcatcher.me/'
 mailcatcher::service_start: 'network.service'
 mailcatcher::service_type: 'simple'
-mailcatcher::service_cmd: '/usr/local/bin/mailcatcher --foreground --ip=0.0.0.0'
+mailcatcher::service_cmd: "/usr/local/bin/mailcatcher --foreground --smtp-ip 0.0.0.0 --http-ip %{lookup('mailcatcher::http_addr')}" 
 mailcatcher::service_restart: 'on-failure'
 mailcatcher::service_restart_time: '5s'
 mailcatcher::service_wanted: 'multi-user.target'
