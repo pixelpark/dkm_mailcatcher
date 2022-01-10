@@ -5,14 +5,13 @@
 # @example
 #   include mailcatcher::setruby
 class mailcatcher::setruby {
-  package { 'enable ruby module':
-    ensure   => present,
-    name     => $mailcatcher::ruby_version,
+  package { 'ruby':
+    ensure   => $mailcatcher::ruby_version,
     provider => $mailcatcher::module_mngmt,
   }
   package { $mailcatcher::packages:
     ensure => present,
   }
 
-  Package['enable ruby module'] -> Package['ruby-devel']
+  Package['ruby'] -> Package['ruby-devel']
 }
