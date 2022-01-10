@@ -7,7 +7,7 @@ mailcatcher::package: 'mailcatcher'
 mailcatcher::package_provider: 'gem'
 mailcatcher::command: "mailcatcher --foreground --http-ip %{lookup('mailcatcher::http_addr')}" 
 mailcatcher::terminal_provider: shell
-mailcatcher::ruby_version: 'ruby:2.7'
+mailcatcher::ruby_version: '2.7'
 mailcatcher::module_mngmt: dnfmodule
 mailcatcher::packages:
     - ruby-devel
