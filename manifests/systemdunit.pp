@@ -18,7 +18,7 @@ class mailcatcher::systemdunit {
     $smtp_port = "--smtp-port ${mailcatcher::smtp_port}"
   }
 
-  $command = "/usr/local/bin/mailcatcher ${http_addr} ${http_port} ${smtp_addr} ${smtp_port}"
+  $command = "/usr/local/bin/mailcatcher --foreground ${http_addr} ${http_port} ${smtp_addr} ${smtp_port}"
 
   systemd::unit_file { 'mailcatcher.service':
     content => epp('mailcatcher/mailcatcher.service.epp', {
