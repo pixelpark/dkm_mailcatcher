@@ -5,33 +5,37 @@
 # @example
 #   include mailcatcher
 class mailcatcher (
-  Array[String]    $packages,
-  String           $ruby_version,
-  String           $module_mngmt,
-  String           $ensure_state,
-  String           $http_addr,
-  # String         $smtp_addr,
-  String           $package_provider,
-  String           $terminal_provider,
-  String           $command,
-  String           $target_path,
-  String           $service_desc,
-  String           $service_doc,
-  String           $service_start,
-  String           $service_type,
-  String           $service_cmd,
-  String           $service_restart,
-  String           $service_wanted,
-  String           $service_restart_time,
-  String           $service_name,
-  String           $service_status,
-  Boolean          $service_state,
+  Array[String] $packages,
+  String        $ruby_version,
+  String        $module_mngmt,
+  String        $ensure_state,
+  String        $package_provider,
+  String        $terminal_provider,
+  String        $command,
+  String        $target_path,
+  String        $service_desc,
+  String        $service_doc,
+  String        $service_start,
+  String        $service_type,
+  String        $service_cmd,
+  String        $service_restart,
+  String        $service_wanted,
+  String        $service_restart_time,
+  String        $service_name,
+  String        $service_status,
+  Boolean       $service_state,
+  Optional[Stdlib::IP::Address] $http_addr = undef,
+  Optional[Stdlib::Port]        $http_port = undef,
+  Optional[Stdlib::IP::Address] $smtp_addr = undef,
+  Optional[Stdlib::Port]        $smtp_port = undef,
 ) {
   include mailcatcher::setruby
   include mailcatcher::install
-  include mailcatcher::run
+  # include mailcatcher::run
   include mailcatcher::systemdunit
-  include mailcatcher::service
+  # include mailcatcher::service
 
-  Class['mailcatcher::setruby'] -> Class['mailcatcher::install'] -> Class['mailcatcher::run']
+  Class['mailcatcher::setruby']
+    -> Class['mailcatcher::install']
+    -> Class['mailcatcher::systemdunit']
 }

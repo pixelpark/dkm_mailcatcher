@@ -1,11 +1,11 @@
 --- 
 
 mailcatcher::ensure_state: 'installed'
-mailcatcher::http_addr: "%{ facts.ipaddress }"
-mailcatcher::smtp_addr: "%{ facts.ipaddress }"
+# mailcatcher::http_addr: "%{ facts.ipaddress }"
+# mailcatcher::smtp_addr: "%{ facts.ipaddress }"
 mailcatcher::package: 'mailcatcher'
 mailcatcher::package_provider: 'gem'
-mailcatcher::command: "mailcatcher --foreground --http-ip %{lookup('mailcatcher::http_addr')}" 
+# mailcatcher::command: "mailcatcher --foreground --http-ip %{lookup('mailcatcher::http_addr')}" 
 mailcatcher::terminal_provider: shell
 mailcatcher::ruby_version: '2.7'
 mailcatcher::module_mngmt: dnfmodule
@@ -15,15 +15,15 @@ mailcatcher::packages:
     - make
     - gcc
     - gcc-c++
-mailcatcher::target_path: '/etc/systemd/system/mailcatcher.service'
+# mailcatcher::target_path: '/etc/systemd/system/mailcatcher.service'
 mailcatcher::service_desc: 'MailCatcher Service'
 mailcatcher::service_doc: 'http://mailcatcher.me/'
-mailcatcher::service_start: 'network.service'
+mailcatcher::service_after: 'network.service'
 mailcatcher::service_type: 'simple'
-mailcatcher::service_cmd: "/usr/local/bin/mailcatcher --foreground --smtp-ip 0.0.0.0 --http-ip %{lookup('mailcatcher::http_addr')}" 
+# mailcatcher::service_cmd: "/usr/local/bin/mailcatcher --foreground --smtp-ip 0.0.0.0 --http-ip %{lookup('mailcatcher::http_addr')}" 
 mailcatcher::service_restart: 'on-failure'
 mailcatcher::service_restart_time: '5s'
 mailcatcher::service_wanted: 'multi-user.target'
-mailcatcher::service_name: 'mailcatcher'
-mailcatcher::service_status: 'running'
-mailcatcher::service_state: true
+# mailcatcher::service_name: 'mailcatcher'
+# mailcatcher::service_status: 'running'
+# mailcatcher::service_state: true
