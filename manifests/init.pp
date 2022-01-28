@@ -15,7 +15,7 @@ class mailcatcher (
   # String        $target_path,
   String        $service_desc,
   String        $service_doc,
-  String        $service_start,
+  String        $service_after,
   String        $service_type,
   # String        $service_cmd,
   String        $service_restart,
