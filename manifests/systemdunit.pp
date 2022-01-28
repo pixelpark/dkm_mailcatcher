@@ -12,7 +12,7 @@ class mailcatcher::systemdunit {
     $http_port = "--http-port ${mailcatcher::http_port}"
   }
   if $mailcatcher::smtp_addr {
-    $smtp_addr = "--smtp-addr ${mailcatcher::smtp_addr}"
+    $smtp_addr = "--smtp-ip ${mailcatcher::smtp_addr}"
   }
   if $mailcatcher::smtp_port {
     $smtp_port = "--smtp-port ${mailcatcher::smtp_port}"
