@@ -20,7 +20,7 @@ class mailcatcher::systemdunit {
 
   $command = "/usr/local/bin/mailcatcher ${http_addr} ${http_port} ${smtp_addr} ${smtp_port}"
 
-  systemd::unit_file { 'foo.service':
+  systemd::unit_file { 'mailcatcher.service':
     content => epp('mailcatcher/mailcatcher.service.epp', {
           'description'   => $mailcatcher::service_desc,
           'documentation' => $mailcatcher::service_doc,
