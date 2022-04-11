@@ -23,11 +23,19 @@ class mailcatcher (
   Optional[Stdlib::IP::Address] $smtp_addr = undef,
   Optional[Stdlib::Port]        $smtp_port = undef,
 ) {
-  include mailcatcher::setruby
-  include mailcatcher::install
-  include mailcatcher::systemdunit
+case $facts['os']['family'] {
+  'RedHat': {
+     if $facts['os']['release']['major'] >= '8' {
+       include mailcatcher::setruby
+       include mailcatcher::install
+       include mailcatcher::systemdunit
 
-  Class['mailcatcher::setruby']
-    -> Class['mailcatcher::install']
-    -> Class['mailcatcher::systemdunit']
+       Class['mailcatcher::setruby']
+         -> Class['mailcatcher::install']
+         -> Class['mailcatcher::systemdunit']
+     }
+  } default: {
+      notify {"Your distro is not supported yet.": }
+    }
+  }
 }
