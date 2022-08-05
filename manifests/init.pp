@@ -25,15 +25,23 @@ class mailcatcher (
 ) {
 case $facts['os']['family'] {
   'RedHat': {
-     if $facts['os']['release']['major'] >= '8' {
-       include mailcatcher::setruby
-       include mailcatcher::install
-       include mailcatcher::systemdunit
+    if $facts['os']['release']['major'] >= '8' {
+      include mailcatcher::install
+      include mailcatcher::systemdunit
 
-       Class['mailcatcher::setruby']
+      Class['mailcatcher::setruby']
          -> Class['mailcatcher::install']
          -> Class['mailcatcher::systemdunit']
      }
+    if $facts['os']['release']['major'] >= '8' {
+      include mailcatcher::setruby
+      include mailcatcher::install
+      include mailcatcher::systemdunit
+
+      Class['mailcatcher::setruby']
+        -> Class['mailcatcher::install']
+        -> Class['mailcatcher::systemdunit']
+    }
   } default: {
       notify {"Your distro is not supported yet.": }
     }
