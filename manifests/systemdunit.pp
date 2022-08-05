@@ -22,18 +22,16 @@ class mailcatcher::systemdunit {
 
   systemd::unit_file { 'mailcatcher.service':
     content => epp('mailcatcher/mailcatcher.service.epp', {
-          'description'   => $mailcatcher::service_desc,
-          'documentation' => $mailcatcher::service_doc,
-          'after'         => $mailcatcher::service_after,
-          'type'          => $mailcatcher::service_type,
-          'execstart'     => $command,
-          'restart'       => $mailcatcher::service_restart,
-          'wantedby'      => $mailcatcher::service_wanted,
-          'restart_time'  => $mailcatcher::service_restart_time,
-        }),
+        'description'   => $mailcatcher::service_desc,
+        'documentation' => $mailcatcher::service_doc,
+        'after'         => $mailcatcher::service_after,
+        'type'          => $mailcatcher::service_type,
+        'execstart'     => $command,
+        'restart'       => $mailcatcher::service_restart,
+        'wantedby'      => $mailcatcher::service_wanted,
+        'restart_time'  => $mailcatcher::service_restart_time,
+    }),
     enable  => true,
     active  => true,
   }
 }
-
-
