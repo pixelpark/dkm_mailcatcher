@@ -43,7 +43,7 @@ case $facts['os']['family'] {
         -> Class['mailcatcher::systemdunit']
     }
   } default: {
-      notify {"Your distro is not supported yet.": }
+      notify {'Your distro is not supported yet.': }
     }
   }
 }
