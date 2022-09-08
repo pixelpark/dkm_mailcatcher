@@ -6,7 +6,7 @@
 #   include mailcatcher::install
 class mailcatcher::install {
   package { 'mailcatcher':
-    ensure   => $mailcatcher::ensure,
+    ensure   => $mailcatcher::ensure_state,
     provider => $mailcatcher::package_provider,
     command  => '/usr/bin/gem',
     #require  => Class['mailcatcher::setruby'],
