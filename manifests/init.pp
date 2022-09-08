@@ -4,6 +4,45 @@
 #
 # @example
 #   include mailcatcher
+#
+# @param packages
+#   list of packages to be installed
+# @param ruby_version
+#   required ruby version
+# @param module_mngmt
+#   dnfmodule: manage the ruby modules
+# @param ensure_state
+#   state of the packages (installed)
+# @param package_provider
+#   provider to install ruby
+# @param terminal_provider
+#   terminal to be use: shell
+# @param service_desc
+#   systemctl unit service description
+# @param service_doc
+#   url to service documentation
+# @param service_after
+#   service option for systemctl unit
+# @param service_type
+#   type of service for systemctl unit
+# @param service_restart
+#   systemctl unit restart option
+# @param service_wanted
+#   systemctl unit option
+# @param service_restart_time
+#   systemctl unit option
+# @param http_addr
+#   custom address where the app should listen
+#   Default: 127.0.0.1
+# @param http_port
+#   custom port for the application
+#   Default: 8010
+# @param smtp_addr
+#   custom smtp address
+#   Default: 127.0.0.1
+# @param smtp_port
+#   custom smtp port
+#   Default: 2510
 class mailcatcher (
   Array[String] $packages,
   String        $ruby_version,
