@@ -1,4 +1,4 @@
---- 
+---
 
 mailcatcher::ensure_state: 'installed'
 mailcatcher::package: 'mailcatcher'

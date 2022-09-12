@@ -5,18 +5,38 @@
 # @example
 #   include mailcatcher::systemdunit
 class mailcatcher::systemdunit {
-  if $mailcatcher::http_addr {
-    $http_addr = "--http-ip ${mailcatcher::http_addr}"
+  $http_addr = $mailcatcher::http_addr ? {
+    undef   => '',
+    default => $mailcatcher::http_addr,
   }
-  if $mailcatcher::http_port {
-    $http_port = "--http-port ${mailcatcher::http_port}"
+
+  $http_port = $mailcatcher::http_port ? {
+    undef   => '',
+    default => $mailcatcher::http_port,
   }
-  if $mailcatcher::smtp_addr {
-    $smtp_addr = "--smtp-ip ${mailcatcher::smtp_addr}"
+
+  $smtp_addr = $mailcatcher::smtp_ip ? {
+    undef   => '',
+    default => $mailcatcher::smtp_ip,
   }
-  if $mailcatcher::smtp_port {
-    $smtp_port = "--smtp-port ${mailcatcher::smtp_port}"
+
+  $smtp_port = $mailcatcher::smtp_port ? {
+    undef   => '',
+    default => $mailcatcher::smtp_pot,
   }
+
+  # if $mailcatcher::http_addr {
+  #   $http_addr = "--http-ip ${mailcatcher::http_addr}"
+  # }
+  # if $mailcatcher::http_port {
+  #   $http_port = "--http-port ${mailcatcher::http_port}"
+  # }
+  # if $mailcatcher::smtp_addr {
+  #   $smtp_addr = "--smtp-ip ${mailcatcher::smtp_addr}"
+  # }
+  # if $mailcatcher::smtp_port {
+  #   $smtp_port = "--smtp-port ${mailcatcher::smtp_port}"
+  # }
 
   $command = "/usr/local/bin/mailcatcher --foreground ${http_addr} ${http_port} ${smtp_addr} ${smtp_port}"
 
