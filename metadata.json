@@ -1,6 +1,6 @@
 {
   "name": "dkm-mailcatcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "dkm",
   "summary": "Catchers mails and display in UI instead of sending them",
   "license": "Apache-2.0",

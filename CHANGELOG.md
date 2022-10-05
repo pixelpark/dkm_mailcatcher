@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.0.1
+
+### Fixes
+
+* Fix hiera variable names
+* Fix variable name in systemdunit
+
 ## Release 1.0.0
 
 ### Changes
