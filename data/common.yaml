@@ -12,10 +12,10 @@ mailcatcher::packages:
   - make
   - gcc
   - gcc-c++
-mailcatcher::service::desc: 'MailCatcher Service'
-mailcatcher::service::doc: 'http://mailcatcher.me/'
-mailcatcher::service::after: 'network.service'
-mailcatcher::service::type: 'simple'
-mailcatcher::service::restart: 'on-failure'
-mailcatcher::service::restart_time: '5s'
-mailcatcher::service::wanted: 'multi-user.target'
+mailcatcher::systemdunit::desc: 'MailCatcher Service'
+mailcatcher::systemdunit::doc: 'http://mailcatcher.me/'
+mailcatcher::systemdunit::after: 'network.service'
+mailcatcher::systemdunit::type: 'simple'
+mailcatcher::systemdunit::restart: 'on-failure'
+mailcatcher::systemdunit::restart_time: '5s'
+mailcatcher::systemdunit::wanted: 'multi-user.target'
