@@ -1,14 +1,13 @@
-# @summary A short summary of the purpose of this class
-#
-# A description of what this class does
-#
-# @example
-#   include mailcatcher::install
+# @summary Installer for the mailcatcher
 class mailcatcher::install {
-  package { 'mailcatcher':
+  assert_private()
+
+  package { $mailcatcher::packages:
+    ensure => present,
+  }
+  -> package { 'mailcatcher':
     ensure   => $mailcatcher::ensure_state,
     provider => $mailcatcher::package_provider,
     command  => '/usr/bin/gem',
-    #require  => Class['mailcatcher::setruby'],
   }
 }

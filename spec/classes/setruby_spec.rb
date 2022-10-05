@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'dkm_mailcatcher::setruby' do
+describe 'mailcatcher::setruby' do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }

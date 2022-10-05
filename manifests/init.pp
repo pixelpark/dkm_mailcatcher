@@ -1,9 +1,7 @@
-# @summary A short summary of the purpose of this class
+# @summary A class for mailcatching
 #
-# A description of what this class does
-#
-# @example
-#   include mailcatcher
+# The software catches mail before are they send out and redirect to a UI.
+# These mails will never leave the host.
 #
 # @param packages
 #   list of packages to be installed
@@ -17,20 +15,6 @@
 #   provider to install ruby
 # @param terminal_provider
 #   terminal to be use: shell
-# @param service_desc
-#   systemctl unit service description
-# @param service_doc
-#   url to service documentation
-# @param service_after
-#   service option for systemctl unit
-# @param service_type
-#   type of service for systemctl unit
-# @param service_restart
-#   systemctl unit restart option
-# @param service_wanted
-#   systemctl unit option
-# @param service_restart_time
-#   systemctl unit option
 # @param http_addr
 #   custom address where the app should listen
 #   Default: 127.0.0.1
@@ -50,13 +34,6 @@ class mailcatcher (
   String        $ensure_state,
   String        $package_provider,
   String        $terminal_provider,
-  String        $service_desc,
-  String        $service_doc,
-  String        $service_after,
-  String        $service_type,
-  String        $service_restart,
-  String        $service_wanted,
-  String        $service_restart_time,
   Optional[Stdlib::IP::Address] $http_addr = undef,
   Optional[Stdlib::Port]        $http_port = undef,
   Optional[Stdlib::IP::Address] $smtp_addr = undef,
@@ -64,25 +41,25 @@ class mailcatcher (
 ) {
   case $facts['os']['family'] {
     'RedHat': {
-      if $facts['os']['release']['major'] >= '8' {
-        include mailcatcher::install
-        include mailcatcher::systemdunit
-
-        Class['mailcatcher::setruby']
-        -> Class['mailcatcher::install']
-        -> Class['mailcatcher::systemdunit']
+      unless $facts['os']['release']['major'] >= '7' {
+        fail("The os release (${facts['os']['family']} ${facts['os']['release']['major']}) is not supported yet.")
       }
+
       if $facts['os']['release']['major'] >= '8' {
         include mailcatcher::setruby
-        include mailcatcher::install
-        include mailcatcher::systemdunit
 
         Class['mailcatcher::setruby']
         -> Class['mailcatcher::install']
-        -> Class['mailcatcher::systemdunit']
       }
-    } default: {
-      notify {'Your distro is not supported yet.': }
+
+      include mailcatcher::install
+      include mailcatcher::systemdunit
+
+      Class['mailcatcher::install']
+      -> Class['mailcatcher::systemdunit']
+    }
+    default: {
+      fail("The distro (${facts['os']['family']}) is not supported yet.")
     }
   }
 }

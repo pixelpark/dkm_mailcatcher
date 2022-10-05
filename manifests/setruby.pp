@@ -1,17 +1,12 @@
-# @summary A short summary of the purpose of this class
-#
-# A description of what this class does
-#
-# @example
-#   include mailcatcher::setruby
+# @summary Class to ensure the needed ruby version
 class mailcatcher::setruby {
+  assert_private()
+
   package { 'ruby':
     ensure   => $mailcatcher::ruby_version,
     provider => $mailcatcher::module_mngmt,
   }
-  package { $mailcatcher::packages:
-    ensure => present,
-  }
 
-  Package['ruby'] -> Package['ruby-devel']
+  Package['ruby']
+  -> Package['ruby-devel']
 }

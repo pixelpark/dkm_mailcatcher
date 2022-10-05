@@ -7,7 +7,7 @@
      String $wantedby,
      String $restart_time,
 | -%>
-
+# THIS FILE IS MANAGED BY PUPPET
 [Unit]
 Description=<%= $description %>
 Documentation=<%= $documentation %>

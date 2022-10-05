@@ -7,15 +7,15 @@ mailcatcher::terminal_provider: shell
 mailcatcher::ruby_version: '2.7'
 mailcatcher::module_mngmt: dnfmodule
 mailcatcher::packages:
-    - ruby-devel
-    - sqlite-devel
-    - make
-    - gcc
-    - gcc-c++
-mailcatcher::service_desc: 'MailCatcher Service'
-mailcatcher::service_doc: 'http://mailcatcher.me/'
-mailcatcher::service_after: 'network.service'
-mailcatcher::service_type: 'simple'
-mailcatcher::service_restart: 'on-failure'
-mailcatcher::service_restart_time: '5s'
-mailcatcher::service_wanted: 'multi-user.target'
+  - ruby-devel
+  - sqlite-devel
+  - make
+  - gcc
+  - gcc-c++
+mailcatcher::service::desc: 'MailCatcher Service'
+mailcatcher::service::doc: 'http://mailcatcher.me/'
+mailcatcher::service::after: 'network.service'
+mailcatcher::service::type: 'simple'
+mailcatcher::service::restart: 'on-failure'
+mailcatcher::service::restart_time: '5s'
+mailcatcher::service::wanted: 'multi-user.target'

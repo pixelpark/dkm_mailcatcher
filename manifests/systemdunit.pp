@@ -1,35 +1,53 @@
-# @summary A short summary of the purpose of this class
+# @summary Class to manages the systemdunit file
 #
-# A description of what this class does
-#
-# @example
-#   include mailcatcher::systemdunit
-class mailcatcher::systemdunit {
-  if $mailcatcher::http_addr {
-    $http_addr = "--http-ip ${mailcatcher::http_addr}"
+# @param desc
+# @param doc
+# @param after
+# @param type
+# @param restart
+# @param wanted
+# @param restart_time
+class mailcatcher::systemdunit (
+  String $desc,
+  String $doc,
+  String $after,
+  String $type,
+  String $restart,
+  String $restart_time,
+  String $wanted,
+) {
+  assert_private()
+
+  $_http_addr = $mailcatcher::http_addr ? {
+    undef   => '',
+    default => "--http-ip ${mailcatcher::http_addr}",
   }
-  if $mailcatcher::http_port {
-    $http_port = "--http-port ${mailcatcher::http_port}"
+  $_http_port = $mailcatcher::http_port ? {
+    undef   => '',
+    default => "--http-port ${mailcatcher::http_port}",
   }
-  if $mailcatcher::smtp_addr {
-    $smtp_addr = "--smtp-ip ${mailcatcher::smtp_addr}"
+  $_smtp_addr = $mailcatcher::smtp_addr ? {
+    undef   => '',
+    default => "--smtp-ip ${mailcatcher::httpsmtp_addr_addr}",
   }
-  if $mailcatcher::smtp_port {
-    $smtp_port = "--smtp-port ${mailcatcher::smtp_port}"
+  $_smtp_port = $mailcatcher::smtp_port ? {
+    undef   => '',
+    default => "--smtp-port ${mailcatcher::smtp_port}",
   }
 
-  $command = "/usr/local/bin/mailcatcher --foreground ${http_addr} ${http_port} ${smtp_addr} ${smtp_port}"
+  $_parameter = ['--foreground', $_http_addr, $_http_port, $_smtp_addr, $_smtp_port].join(' ')
 
   systemd::unit_file { 'mailcatcher.service':
+    ensure  => present,
     content => epp('mailcatcher/mailcatcher.service.epp', {
-        'description'   => $mailcatcher::service_desc,
-        'documentation' => $mailcatcher::service_doc,
-        'after'         => $mailcatcher::service_after,
-        'type'          => $mailcatcher::service_type,
-        'execstart'     => $command,
-        'restart'       => $mailcatcher::service_restart,
-        'wantedby'      => $mailcatcher::service_wanted,
-        'restart_time'  => $mailcatcher::service_restart_time,
+        'description'   => $desc,
+        'documentation' => $doc,
+        'after'         => $after,
+        'type'          => $type,
+        'execstart'     => "/usr/local/bin/mailcatcher ${_parameter}",
+        'restart'       => $restart,
+        'wantedby'      => $wanted,
+        'restart_time'  => $restart_time,
     }),
     enable  => true,
     active  => true,
