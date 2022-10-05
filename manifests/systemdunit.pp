@@ -28,7 +28,7 @@ class mailcatcher::systemdunit (
   }
   $_smtp_addr = $mailcatcher::smtp_addr ? {
     undef   => '',
-    default => "--smtp-ip ${mailcatcher::httpsmtp_addr_addr}",
+    default => "--smtp-ip ${mailcatcher::smtp_addr}",
   }
   $_smtp_port = $mailcatcher::smtp_port ? {
     undef   => '',
