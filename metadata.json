@@ -1,6 +1,6 @@
 {
   "name": "dkm-mailcatcher",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "dkm",
   "summary": "Catchers mails and display in UI instead of sending them",
   "license": "Apache-2.0",
@@ -8,7 +8,7 @@
   "dependencies": [
     {
       "name": "puppet-systemd",
-      "version_requirement": ">=4.0.0  <9.0.0"
+      "version_requirement": ">=4.0.0 <9.0.0"
     },
     {
       "name": "puppetlabs-stdlib",

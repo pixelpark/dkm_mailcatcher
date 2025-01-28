@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.1.0
+
+### Changes
+
+* Adding REFERENCE.md
+* Update to PDK 3.4.0
+* Fix systemd unit running as root user
+* Add EL9 support
+* Remove commited file from git_ignore
+
 ## Release 1.0.1
 
 ### Fixes
