@@ -37,19 +37,25 @@ class mailcatcher::systemdunit (
 
   $_parameter = ['--foreground', $_http_addr, $_http_port, $_smtp_addr, $_smtp_port].join(' ')
 
-  systemd::unit_file { 'mailcatcher.service':
-    ensure  => present,
-    content => epp('mailcatcher/mailcatcher.service.epp', {
-        'description'   => $desc,
-        'documentation' => $doc,
-        'after'         => $after,
-        'type'          => $type,
-        'execstart'     => "/usr/local/bin/mailcatcher ${_parameter}",
-        'restart'       => $restart,
-        'wantedby'      => $wanted,
-        'restart_time'  => $restart_time,
-    }),
-    enable  => true,
-    active  => true,
+  systemd::manage_unit { 'mailcatcher.service':
+    ensure        => present,
+    enable        => true,
+    active        => true,
+    unit_entry    => {
+      'Description'   => $desc,
+      'Documentation' => $doc,
+      'After'         => $after,
+    },
+    service_entry => {
+      'Type'       => $type,
+      'ExecStart'  => "/usr/local/bin/mailcatcher ${_parameter}",
+      'Restart'    => $restart,
+      'RestartSec' => $restart_time,
+      'User'       => $mailcatcher::user,
+      'Group'      => $mailcatcher::group,
+    },
+    install_entry => {
+      'WantedBy' => $wanted,
+    },
   }
 }

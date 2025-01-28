@@ -3,6 +3,10 @@
 # The software catches mail before are they send out and redirect to a UI.
 # These mails will never leave the host.
 #
+# @param user
+#   user under which the service should run
+# @param group
+#   group under which the service should run
 # @param packages
 #   list of packages to be installed
 # @param ruby_version
@@ -28,6 +32,8 @@
 #   custom smtp port
 #   Default: 2510
 class mailcatcher (
+  String[1]     $user,
+  String[1]     $group,
   Array[String] $packages,
   String        $ruby_version,
   String        $module_mngmt,
@@ -46,14 +52,14 @@ class mailcatcher (
       }
 
       if $facts['os']['release']['major'] >= '8' {
-        include mailcatcher::setruby
+        contain mailcatcher::setruby
 
         Class['mailcatcher::setruby']
         -> Class['mailcatcher::install']
       }
 
-      include mailcatcher::install
-      include mailcatcher::systemdunit
+      contain mailcatcher::install
+      contain mailcatcher::systemdunit
 
       Class['mailcatcher::install']
       -> Class['mailcatcher::systemdunit']

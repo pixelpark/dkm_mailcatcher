@@ -1,6 +1,8 @@
 --- 
 
 mailcatcher::ensure_state: 'installed'
+mailcatcher::user: 'mailcatcher'
+mailcatcher::group: 'mailcatcher'
 mailcatcher::package: 'mailcatcher'
 mailcatcher::package_provider: 'gem'
 mailcatcher::terminal_provider: shell
