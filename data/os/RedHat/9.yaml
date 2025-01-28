@@ -1,0 +1,11 @@
+---
+mailcatcher::ruby_version: '3.1'
+mailcatcher::packages:
+  - gcc
+  - gcc-c++
+  - make
+  - openssl-devel
+  - redhat-rpm-config
+  - ruby-devel
+  - rubygem-json
+  - sqlite-devel
