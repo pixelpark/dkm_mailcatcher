@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.2.0
+
+### Changes
+
+* Add rubygem mirror / proxy support via /etc/gemrc
+* Use ruby 4.0 for EL9
+
 ## Release 1.1.0
 
 ### Changes
