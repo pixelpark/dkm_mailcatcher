@@ -34,6 +34,7 @@ The following parameters are available in the `mailcatcher` class:
 * [`http_port`](#-mailcatcher--http_port)
 * [`smtp_addr`](#-mailcatcher--smtp_addr)
 * [`smtp_port`](#-mailcatcher--smtp_port)
+* [`gemrc_config`](#-mailcatcher--gemrc_config)
 
 ##### <a name="-mailcatcher--user"></a>`user`
 
@@ -116,6 +117,14 @@ Data type: `Optional[Stdlib::Port]`
 
 custom smtp port
 Default: 2510
+
+Default value: `undef`
+
+##### <a name="-mailcatcher--gemrc_config"></a>`gemrc_config`
+
+Data type: `Optional[Stdlib::HTTPUrl]`
+
+Additional gem config
 
 Default value: `undef`
 

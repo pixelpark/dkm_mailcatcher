@@ -31,6 +31,8 @@
 # @param smtp_port
 #   custom smtp port
 #   Default: 2510
+# @param gemrc_config
+#   Additional gem config
 class mailcatcher (
   String[1]     $user,
   String[1]     $group,
@@ -44,7 +46,18 @@ class mailcatcher (
   Optional[Stdlib::Port]        $http_port = undef,
   Optional[Stdlib::IP::Address] $smtp_addr = undef,
   Optional[Stdlib::Port]        $smtp_port = undef,
+  Optional[Stdlib::HTTPUrl]     $gemrc_config = undef,
 ) {
+  if $gemrc_config {
+    file { '/etc/gemrc':
+      ensure  => file,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => $gemrc_config.stdlib::to_yaml,
+    }
+  }
+
   case $facts['os']['family'] {
     'RedHat': {
       unless $facts['os']['release']['major'] >= '7' {
