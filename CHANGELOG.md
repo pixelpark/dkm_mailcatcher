@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.2.1
+
+### Changes
+
+* Fix wrong datatype for gemrc_config
+
 ## Release 1.2.0
 
 ### Changes
