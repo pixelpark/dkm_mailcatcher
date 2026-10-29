@@ -122,7 +122,7 @@ Default value: `undef`
 
 ##### <a name="-mailcatcher--gemrc_config"></a>`gemrc_config`
 
-Data type: `Optional[Stdlib::HTTPUrl]`
+Data type: `Optional[Hash[String,Data]]`
 
 Additional gem config
 

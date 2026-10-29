@@ -46,7 +46,7 @@ class mailcatcher (
   Optional[Stdlib::Port]        $http_port = undef,
   Optional[Stdlib::IP::Address] $smtp_addr = undef,
   Optional[Stdlib::Port]        $smtp_port = undef,
-  Optional[Stdlib::HTTPUrl]     $gemrc_config = undef,
+  Optional[Hash[String,Data]]   $gemrc_config = undef,
 ) {
   if $gemrc_config {
     file { '/etc/gemrc':
